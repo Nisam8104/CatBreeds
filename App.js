@@ -25,34 +25,38 @@ const App = () => {
   }, [page]);
 
   return (
-    <FlatList
-      data={data}
-      keyExtractor={(item, index) => index.toString()} // add this
-      onEndReached={() => {
-        console.log('reached page end next page = ', page + 1);
-        setPage(page + 1);
-      }}
-      onEndReachedThreshold={0.5}
-      initialNumToRender={10}
-      renderItem={({item, index}) => {
-        return (
-          <View style={styles.cards}>
-            <View style={styles.center}>
-              <Text style={styles.textBold}> {index + 1}</Text>
-              <Text style={styles.textBold}>Breed: {item.breed}</Text>
+    <View style={styles.headerContainer}>
+      <Text style={styles.headingText}>Cat Breed Information</Text>
+
+      <FlatList
+        data={data}
+        keyExtractor={(item, index) => index.toString()} // add this
+        onEndReached={() => {
+          console.log('reached page end next page = ', page + 1);
+          setPage(page + 1);
+        }}
+        onEndReachedThreshold={0.5}
+        initialNumToRender={10}
+        renderItem={({item, index}) => {
+          return (
+            <View style={styles.cards}>
+              <View style={styles.center}>
+                <Text style={styles.textBold}> {index + 1}</Text>
+                <Text style={styles.textBold}>Breed: {item.breed}</Text>
+              </View>
+              <View style={styles.row}>
+                <Text style={styles.text}>Country: {item.country}</Text>
+                <Text style={styles.text}>Origin: {item.origin}</Text>
+              </View>
+              <View style={styles.row}>
+                <Text style={styles.text}>Coat: {item.coat}</Text>
+                <Text style={styles.text}>Pattern: {item.pattern}</Text>
+              </View>
             </View>
-            <View style={styles.row}>
-              <Text style={styles.text}>Country: {item.country}</Text>
-              <Text style={styles.text}>Origin: {item.origin}</Text>
-            </View>
-            <View style={styles.row}>
-              <Text style={styles.text}>Coat: {item.coat}</Text>
-              <Text style={styles.text}>Pattern: {item.pattern}</Text>
-            </View>
-          </View>
-        );
-      }}
-    />
+          );
+        }}
+      />
+    </View>
   );
 };
 
@@ -104,14 +108,15 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     padding: 20,
-    backgroundColor: '#f2f2f2',
-    alignItems: 'center',
+    backgroundColor: 'black',
+
     flex: 1,
   },
-  headerText: {
+  headingText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#333',
+    color: 'white',
+    textAlign: 'center',
   },
 });
 
