@@ -32,13 +32,14 @@ const App = () => {
         console.log('reached page end next page = ', page + 1);
         setPage(page + 1);
       }}
-      onEndReachedThreshold={0.5} // add this
-      initialNumToRender={10} // add this
-      renderItem={({item}) => {
+      onEndReachedThreshold={0.5}
+      initialNumToRender={10}
+      renderItem={({item, index}) => {
         return (
           <View style={styles.cards}>
             <View style={styles.center}>
-            <Text style={styles.text}>Breed: {item.breed}</Text>
+              <Text style={styles.textBold}> {index + 1}</Text>
+              <Text style={styles.textBold}>Breed: {item.breed}</Text>
             </View>
             <View style={styles.row}>
               <Text style={styles.text}>Country: {item.country}</Text>
@@ -64,26 +65,54 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     justifyContent: 'space-between',
-
     backgroundColor: 'white',
     flex: 1,
+    shadowColor: 'black',
+    shadowOpacity: 0.26,
+    shadowOffset: {width: 0, height: 2},
+    shadowRadius: 8,
+    elevation: 5,
+
+    borderRadius: 10,
+    padding: 20,
+    marginVertical: 10,
   },
   text: {
     fontSize: 15,
     color: 'black',
-    justifyContent:"center",
-    
+    justifyContent: 'center',
   },
   row: {
     flexDirection: 'row',
     flex: 1,
-    justifyContent:'space-between',
+    justifyContent: 'space-between',
   },
   center: {
-    flex:1,
-    justifyContent: "center",
-    alignItems: "center",
-  }
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textBold: {
+    fontSize: 15,
+    color: 'red',
+    justifyContent: 'center',
+    fontWeight: 'bold',
+  },
+  heading: {
+    fontSize: 20,
+    flex: 1,
+  },
+  headerContainer: {
+    padding: 20,
+    backgroundColor: '#f2f2f2',
+    alignItems: 'center',
+    flex: 1,
+  },
+  headerText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+  },
 });
 
 export default App;
